@@ -107,7 +107,13 @@
   },
   "footer": {
     "socials": {
-      "linkedin": "https://www.linkedin.com/company/wazootech/"
+      "linkedin": "https://www.linkedin.com/company/wazootech/",
+      "github": "https://github.com/wazootech"
+    }
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-V64G870T6Z"
     }
   }
 }
