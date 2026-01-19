@@ -38,7 +38,7 @@ const world = new World({
 Insert some data into your world using SPARQL.
 
 ```typescript
-await world.sparqlUpdate(`
+await world.sparql(`
   INSERT DATA {
     <http://example.org/ethan> <http://schema.org/name> "Ethan" .
     <http://example.org/ethan> <http://schema.org/jobTitle> "Software Engineer" .
@@ -51,7 +51,7 @@ await world.sparqlUpdate(`
 Retrieve the data you just added.
 
 ```typescript
-const result = await world.sparqlQuery(`
+const result = await world.sparql(`
   SELECT ?name ?title WHERE {
     ?person <http://schema.org/name> ?name ;
             <http://schema.org/jobTitle> ?title .

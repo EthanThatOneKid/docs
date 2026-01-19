@@ -20,20 +20,12 @@ new World(options: {
 
 ### Methods
 
-#### `sparqlQuery`
+#### `sparql`
 
-Executes a SPARQL query against the world.
-
-```typescript
-sparqlQuery(query: string, options?: { accountId?: string }): Promise<unknown>
-```
-
-#### `sparqlUpdate`
-
-Executes a SPARQL update against the world.
+Executes a SPARQL query or update against the world.
 
 ```typescript
-sparqlUpdate(update: string, options?: { accountId?: string }): Promise<void>
+sparql(query: string, options?: { accountId?: string }): Promise<SparqlResults | null>
 ```
 
 #### `search`

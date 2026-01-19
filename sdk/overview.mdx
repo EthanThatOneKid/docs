@@ -28,7 +28,7 @@ const world = new World({
 });
 
 // Run a SPARQL query
-const result = await world.sparqlQuery(`
+const result = await world.sparql(`
   SELECT ?s ?p ?o WHERE {
     ?s ?p ?o .
   } LIMIT 10
