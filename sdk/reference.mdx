@@ -1,65 +1,69 @@
 ---
 title: SDK Reference
-description: "Method reference for the `World` and `Worlds` classes"
+description: "Method reference for the `WorldsSdk` class"
 ---
 
-## `World` Class
+## `WorldsSdk` Class
 
-The `World` class represents a single knowledge base instance.
+The `WorldsSdk` class is the main entry point for the SDK.
 
 ### Constructor
 
 ```typescript
-new World(options: {
+new WorldsSdk(options: {
   baseUrl?: string;
   apiKey: string;
-  worldId: string;
   fetch?: typeof fetch;
 })
 ```
 
+### Properties
+
+#### `worlds`
+
+Interface for managing functionality related to worlds.
+
 ### Methods
 
-#### `sparql`
+#### `worlds.sparql`
 
-Executes a SPARQL query or update against the world.
+Executes a SPARQL query or update against a world.
 
 ```typescript
-sparql(query: string, options?: { accountId?: string }): Promise<SparqlResults | null>
+worlds.sparql(worldId: string, query: string, options?: { abortSignal?: AbortSignal }): Promise<SparqlResults | null>
 ```
 
-#### `search`
+#### `worlds.search`
 
-Performs a semantic search within the world.
+Performs a semantic search within a world.
 
 ```typescript
-search(query: string, options?: {
+worlds.search(worldId: string, query: string, options?: {
   limit?: number;
   offset?: number;
-  accountId?: string;
 }): Promise<SearchResult>
 ```
 
-#### `get`
+#### `worlds.get`
 
-Retrieves the world's metadata.
+Retrieves a world's metadata.
 
 ```typescript
-get(options?: { accountId?: string }): Promise<WorldRecord | null>
+worlds.get(worldId: string): Promise<WorldRecord | null>
 ```
 
-#### `update`
+#### `worlds.update`
 
-Updates the world's metadata.
+Updates a world's metadata.
 
 ```typescript
-update(data: WorldRecord, options?: { accountId?: string }): Promise<void>
+worlds.update(worldId: string, data: Partial<WorldRecord>): Promise<void>
 ```
 
-#### `remove`
+#### `worlds.delete`
 
-Deletes the world.
+Deletes a world.
 
 ```typescript
-remove(options?: { accountId?: string }): Promise<void>
+worlds.delete(worldId: string): Promise<void>
 ```

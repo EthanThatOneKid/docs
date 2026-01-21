@@ -24,13 +24,14 @@ deno add jsr:@fartlabs/worlds
 ### 2. Initialize the Client
 
 ```typescript
-import { World } from "@fartlabs/worlds";
+import { WorldsSdk } from "@fartlabs/worlds";
 
-const world = new World({
+const sdk = new WorldsSdk({
   baseUrl: "https://api.wazoo.tech/v1", // Adjust if using a different endpoint
   apiKey: "YOUR_API_KEY",
-  worldId: "YOUR_WORLD_ID",
 });
+
+const worldId = "YOUR_WORLD_ID";
 ```
 
 ### 3. Add Knowledge
@@ -38,12 +39,15 @@ const world = new World({
 Insert some data into your world using SPARQL.
 
 ```typescript
-await world.sparql(`
+await sdk.worlds.sparql(
+  worldId,
+  `
   INSERT DATA {
     <http://example.org/ethan> <http://schema.org/name> "Ethan" .
     <http://example.org/ethan> <http://schema.org/jobTitle> "Software Engineer" .
   }
-`);
+`
+);
 ```
 
 ### 4. Query Knowledge
@@ -51,12 +55,15 @@ await world.sparql(`
 Retrieve the data you just added.
 
 ```typescript
-const result = await world.sparql(`
+const result = await sdk.worlds.sparql(
+  worldId,
+  `
   SELECT ?name ?title WHERE {
     ?person <http://schema.org/name> ?name ;
             <http://schema.org/jobTitle> ?title .
   }
-`);
+`
+);
 
 console.log(result);
 ```
@@ -66,6 +73,6 @@ console.log(result);
 Perform a semantic search.
 
 ```typescript
-const searchResults = await world.search("Who is the software engineer?");
+const searchResults = await sdk.worlds.search(worldId, "Who is the software engineer?");
 console.log(searchResults);
 ```
